@@ -1,7 +1,3 @@
-//
-// Created by aknight on 9/8/19.
-//
-
 #ifndef EX03_LINKEDLIST_LIST_H
 #define EX03_LINKEDLIST_LIST_H
 

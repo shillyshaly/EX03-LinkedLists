@@ -35,3 +35,5 @@ csv15-lib
 *.exe
 *.out
 *.app
+
+!.idea
