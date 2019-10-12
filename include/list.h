@@ -66,7 +66,14 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         const Ty& back()  const { return _tail->_data; }
 
         void push_front(const Ty& val) {
-            // put our code here
+            node* newNode = new node;
+            newNode->_data = val;
+            newNode->_prev = nullptr;
+            newNode->_next = (*_head);
+            if((*_head) != nullptr){
+                (*_head)->_prev = newNode;
+                (*_head) = newNode;
+            }
         }
 
         void pop_front() {
