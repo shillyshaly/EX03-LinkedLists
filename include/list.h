@@ -67,13 +67,13 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
 
         void push_front(const Ty& val) {
             node* newNode = new node(val, nullptr, nullptr);        //allocate memory for new node
-            if((*_head) == nullptr){            //Check empty, points head/tail to new node if true
-                (*_head) = newNode;
-                (*_tail) = newNode;
+            if(_head == nullptr){            //Check empty, points head/tail to new node if true
+                _head = newNode;
+                _tail = newNode;
             }else{
-                newNode->_next = (*_head);      //else add to front of list
+                newNode->_next = _head;      //else add to front of list
                 newNode->_prev = nullptr;
-                (*_head) = newNode;
+                _head = newNode;
             }
             _size++;
         }
@@ -83,7 +83,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         }
 
         void push_back(const Ty& val) {
-            
+
         }
 
         void pop_back() {
