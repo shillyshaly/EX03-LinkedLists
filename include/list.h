@@ -72,7 +72,6 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 _tail = newNode;
             }else{
                 newNode->_next = _head;      //else add to front of list
-                newNode->_prev = nullptr;
                 _head = newNode;
             }
             _size++;
@@ -91,7 +90,12 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         }
 
         iterator insert(iterator it, const Ty &val) {
-            // put your code here
+            it._current()._next = new node(val, it._current->_next);
+            if(it._current == _tail){
+                _tail = it._current->_next;
+                _size++;
+                return it;
+            }
         }
 
         iterator erase(iterator it) {
