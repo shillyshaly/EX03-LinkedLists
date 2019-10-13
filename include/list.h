@@ -90,9 +90,9 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         }
 
         iterator insert(iterator it, const Ty &val) {
-            it._current() = new node(val, it._current->_next, it._current->_prev);
-            if(it._current() == _tail){
-                _tail = it._current();
+            it._current = new node(val, it._current->_next, it._current->_prev);
+            if(it._current == _tail){
+                _tail = it._current;
                 _size++;
                 return it;
             }
