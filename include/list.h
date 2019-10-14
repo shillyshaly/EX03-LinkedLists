@@ -110,7 +110,17 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         }
 
         void pop_back() {
-            // put your code here
+            if(_size = 0){
+                return;
+            }
+            if(_size = 1){
+                delete _head;
+                _head = nullptr;
+                _tail = nullptr;
+                _size = 0;
+                return;
+            }
+            
         }
 
         iterator insert(iterator it, const Ty &val) {
