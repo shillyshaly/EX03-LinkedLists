@@ -72,17 +72,41 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 _tail = newNode;
             }else{
                 newNode->_next = _head;      //else add to front of list
+                newNode->_prev = nullptr;
                 _head = newNode;
             }
             _size++;
         }
 
         void pop_front() {
-            // put your code here
+            if(_size = 0){
+                return;
+            }
+            if(_size = 1){
+                delete _head;
+                _head = nullptr;
+                _tail = nullptr;
+                _size = 0;
+                return;
+            }
+            node* _old = _head;
+            if(_old != nullptr){
+                _head = _old->_next;
+                delete _old;
+            }
+            _size--;
         }
 
         void push_back(const Ty& val) {
-
+            node* newNode = new node(val, nullptr, nullptr);
+            if(_tail == nullptr){
+                _head = newNode;
+                _tail = newNode;
+            }else{
+                newNode->_prev = _tail;
+                newNode->_next = nullptr;
+                _tail = newNode;
+            }
         }
 
         void pop_back() {
