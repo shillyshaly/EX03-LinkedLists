@@ -133,23 +133,31 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 it._current = newNode;
                 _size++;
                 return it;
-            }
+            } else
             if(it._current == _head){           //insert at head if list is not empty
-                newNode->_next = _head;
                 _head->_prev = newNode->_next;
+                newNode->_next = _head;
                 _head = newNode;
                 it._current = newNode;
                 _size++;
                 return it;
-            }
-            if(it._current == _tail){
+            } else
+            if(it._current == nullptr){           //insert at tail if list is not empty
+                _tail->_next = newNode;
                 newNode->_prev = _tail;
-                _tail->_next = newNode->_prev;
-                _tail = newNode;
                 it._current = newNode;
                 _size++;
                 return it;
             }
+//            else{                              //insert in middle
+//                newNode->_prev = it._current->_next;
+//                newNode->_next = it._current;
+//                it._current->_prev = newNode;
+//                it._current = newNode;
+//                _head = newNode;
+//                _size++;
+//                return it;
+//            }
         }
 
         iterator erase(iterator it) {
