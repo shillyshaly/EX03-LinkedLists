@@ -2,6 +2,7 @@
 #define EX03_LINKEDLIST_LIST_H
 
 #include <cstdlib>
+#include <glob.h>
 
 namespace edu { namespace vcccd { namespace vc { namespace csv15 {
 
@@ -71,8 +72,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 _head = newNode;
                 _tail = newNode;
             }else{
-                newNode->_next = _head;      //else add to front of list
-                newNode->_prev = nullptr;
+                newNode->_next = _head;      //else add to front of list, prev already points to null
                 _head = newNode;
             }
             _size++;
@@ -95,6 +95,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 delete _old;
             }
             _size--;
+
         }
 
         void push_back(const Ty& val) {
@@ -104,7 +105,6 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 _tail = newNode;
             }else{
                 newNode->_prev = _tail;
-                newNode->_next = nullptr;
                 _tail = newNode;
             }
         }
@@ -120,13 +120,33 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 _size = 0;
                 return;
             }
-            
+
         }
 
         iterator insert(iterator it, const Ty &val) {
-            it._current = new node(val, it._current->_next, it._current->_prev);
+
+            node* newNode = new node(val, nullptr, nullptr);            //allocate memory for new node.  adds value, and points next/prev to null
+
+            if(_head == nullptr){               //insert a new node if empty.
+                _head = newNode;
+                _tail = newNode;
+                it._current = newNode;
+                _size++;
+                return it;
+            }
+            if(it._current == _head){           //insert at head if list is not empty
+                newNode->_next = _head;
+                _head->_prev = newNode->_next;
+                _head = newNode;
+                it._current = newNode;
+                _size++;
+                return it;
+            }
             if(it._current == _tail){
-                _tail = it._current;
+                newNode->_prev = _tail;
+                _tail->_next = newNode->_prev;
+                _tail = newNode;
+                it._current = newNode;
                 _size++;
                 return it;
             }
