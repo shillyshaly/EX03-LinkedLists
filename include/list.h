@@ -66,67 +66,58 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         const Ty& back()  const { return _tail->_data; }
 
         void push_front(const Ty& val) {
-            node* newNode = new node(val, nullptr, nullptr);        //allocate memory for new node
-            if(_head == nullptr){            //Check empty, points head/tail to new node if true
-                _head = newNode;
-                _tail = newNode;
-            }else{
-                newNode->_next = _head;      //else add to front of list
-                newNode->_prev = nullptr;
-                _head = newNode;
-            }
-            _size++;
+
         }
 
         void pop_front() {
-            if(_size = 0){
-                return;
-            }
-            if(_size = 1){
-                delete _head;
-                _head = nullptr;
-                _tail = nullptr;
-                _size = 0;
-                return;
-            }
-            node* _old = _head;
-            if(_old != nullptr){
-                _head = _old->_next;
-                delete _old;
-            }
-            _size--;
+
         }
 
         void push_back(const Ty& val) {
-            node* newNode = new node(val, nullptr, nullptr);
-            if(_tail == nullptr){
-                _head = newNode;
-                _tail = newNode;
-            }else{
-                newNode->_prev = _tail;
-                newNode->_next = nullptr;
-                _tail = newNode;
-            }
+
         }
 
         void pop_back() {
-            if(_size = 0){
-                return;
-            }
-            if(_size = 1){
-                delete _head;
-                _head = nullptr;
-                _tail = nullptr;
-                _size = 0;
-                return;
-            }
+
             
         }
 
         iterator insert(iterator it, const Ty &val) {
-            it._current = new node(val, it._current->_next, it._current->_prev);
-            if(it._current == _tail){
-                _tail = it._current;
+            node* newNode = new node(val);            //allocate memory for new node.  adds value, and points next/prev to null
+
+            if(_head == nullptr){               //insert a new node if empty.
+                newNode->_next = nullptr;
+                newNode->_prev = nullptr;
+                _head = newNode;
+                _tail = newNode;
+                it._current = newNode;
+                _size++;
+                return it;
+            } else
+            if(it._current == _head){           //insert at head if list is not empty
+                newNode->_next = _head;
+                newNode->_prev = nullptr;
+                _head = newNode;
+                it._current = newNode;
+                _size++;
+                return it;
+            } else
+            if(it._current == nullptr){           //insert at tail if list is not empty
+                newNode->_prev = _tail;
+                newNode->_next = nullptr;
+                _tail->_next = newNode;
+                _tail = newNode;
+                it._current = newNode;
+                _size++;
+                return it;
+            }
+            else{                              //insert in middle
+                newNode->_prev = it._current->_next;
+                newNode->_next = newNode->_next->_prev;
+                it._current->_next = newNode;
+                newNode->_next->_prev = newNode;
+                it._current = newNode;
+                _head = newNode;
                 _size++;
                 return it;
             }
