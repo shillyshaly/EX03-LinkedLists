@@ -6,7 +6,7 @@ project (EX03-LinkedLists)
 set(SOURCE_PREFIX "linkedlists")
 set(EXEC_NAME "LinkedLists")
 set(CMAKE_CXX_STANDARD 11)
-add_executable(EX03-LinkedLists include/list.h src/main.cc)
+
 
 if(EXISTS ${CMAKE_HOME_DIRECTORY}/csv15-lib/CMakeLists.txt)
     include(csv15-lib/CMakeLists.txt)

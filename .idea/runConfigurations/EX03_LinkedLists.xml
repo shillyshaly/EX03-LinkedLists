@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="EX03-LinkedLists" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="EX03-LinkedLists" TARGET_NAME="EX03-LinkedLists" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="EX03-LinkedLists" RUN_TARGET_NAME="EX03-LinkedLists">
-    <method v="2">
-      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-    </method>
-  </configuration>
-</component>
