@@ -78,6 +78,28 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         }
 
         void pop_front() {
+            //if empty, return if true
+            if(_head == nullptr){
+                return;
+            }
+            //if single node, del node, H/T to null
+            if(_size == 1){
+                delete _head;
+                _head = nullptr;
+                _tail = nullptr;
+                _size = 0;
+                return;
+            }
+            //copy head to node
+            node* oldNode = _head;
+
+            //if head != null
+            if(_head != nullptr){
+                //set H to copy.next, del copy
+                _head = oldNode->_next;
+                delete oldNode;
+            }
+            _size--;
         }
 
         void push_back(const Ty& val) {
@@ -94,13 +116,35 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         }
 
         void pop_back() {
+            //if empty, return if true
+            if(_head == nullptr){
+                return;
+            }
+            //if single node, del node, H/T to null
+            if(_size == 1){
+                delete _head;
+                _head = nullptr;
+                _tail = nullptr;
+                _size = 0;
+                return;
+            }
+            //copy tail to node
+            node* oldNode = _tail;
+            //if head != null
+            if(_head != nullptr){
+                //set T to copy.next, del copy
+                _tail = oldNode->_prev;
+                _tail->_next = nullptr;
+                delete oldNode;
+            }
+            _size--;
         }
 
         iterator insert(iterator it, const Ty &val) {
             //allocate memory for new node.  adds value, and points next/prev to null
             node* newNode = new node(val);
 
-            //insert a new node if empty.
+            //if empty, insert new node, newNode next/prev to null, head/tail to newNode
             if(_head == nullptr){
                 newNode->_next = nullptr;
                 newNode->_prev = nullptr;
@@ -149,6 +193,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
             }else{                                      //else set oldNode to next node
                 oldNode = it._current->_next;
             }
+
             //when list is not empty, set it.next to
             if(it._current != nullptr){
                 it._current->_next = oldNode->_next;
@@ -157,7 +202,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
             _size--;
             return it;
         }
-
+        //erase from it.current to end using for loop
         iterator erase(iterator first, iterator last) {
             for(auto i = first; i != last; i++){
                 erase(i);
@@ -172,7 +217,6 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
             _head = nullptr;
             _tail = nullptr;
             _size = 0;
-            std::cout << "all gone" << std::endl;
         }
     };
 
