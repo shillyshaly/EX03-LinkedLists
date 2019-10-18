@@ -8,13 +8,15 @@ using edu::vcccd::vc::csv15::list;
 
 int main(){
     list<int> ints;
-    ints.insert(ints.begin(), 7);
-    ints.insert(ints.begin(), 9);
 
-    ints.insert(++ints.begin(),8);//inserts interior
-    ints.insert(ints.end(), 13);
-    ints.insert(++(++ints.begin()), 5);
-    ints.insert(ints.end(), 15);
+    ints.push_front(7);
+//    ints.insert(ints.begin(), 7);
+//    ints.insert(ints.begin(), 9);
+//
+//    ints.insert(++ints.begin(),8);//inserts interior
+//    ints.insert(ints.end(), 13);
+//    ints.insert(++(++ints.begin()), 5);
+//    ints.insert(ints.end(), 15);
     for(int i: ints){
         std::cout << i << std::endl;
     }
