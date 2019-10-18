@@ -128,14 +128,15 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 _size = 0;
                 return;
             }
-            //copy tail to node
-            node* oldNode = _tail;
-            //if head != null
+            //if H/T != null
             if(_head != nullptr){
-                //set T to copy.next, tail to null, del copy
-                _tail = oldNode->_prev;
-                _tail->_next = nullptr;
-                delete oldNode;
+                if(_tail != nullptr){
+                    //make copy of node before tail, tail to null, tail = copy
+                    node* oldNode = _tail->_prev;
+                    oldNode->_next = nullptr;
+                    delete _tail;
+                    _tail = oldNode;
+                }
             }
             _size--;
         }
