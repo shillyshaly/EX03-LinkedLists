@@ -13,6 +13,7 @@ int main(){
 
     ints.insert(++ints.begin(),8);//inserts interior
     ints.insert(ints.end(), 13);
+    ints.insert(++(++ints.begin()), 5);
     ints.insert(ints.end(), 15);
     for(int i: ints){
         std::cout << i << std::endl;

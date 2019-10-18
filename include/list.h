@@ -97,8 +97,9 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
             if(it._current == _head){           //insert at head if list is not empty
                 newNode->_next = _head;
                 newNode->_prev = nullptr;
-                _head = newNode;
                 it._current = newNode;
+                _head = newNode;
+                it._current->_next->_prev = newNode;
                 _size++;
                 return it;
             } else
@@ -112,12 +113,11 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 return it;
             }
             else{                              //insert in middle
-                newNode->_prev = it._current->_next;
-                newNode->_next = newNode->_next->_prev;
-                it._current->_next = newNode;
-                newNode->_next->_prev = newNode;
+                newNode->_prev = it._current->_prev;
+                newNode->_next = it._current;
+                it._current->_prev = newNode;
+                newNode->_prev->_next = newNode;
                 it._current = newNode;
-                _head = newNode;
                 _size++;
                 return it;
             }
