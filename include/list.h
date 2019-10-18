@@ -112,7 +112,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 _size++;
                 return it;
             }
-            else{                              //insert in middle
+            else{                              //insert in middle of list
                 newNode->_prev = it._current->_prev;
                 newNode->_next = it._current;
                 it._current->_prev = newNode;
