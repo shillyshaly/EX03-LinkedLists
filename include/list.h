@@ -66,32 +66,42 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         const Ty& back()  const { return _tail->_data; }
 
         void push_front(const Ty& val) {
+            //allocate memory for new node
             node* newNode = new node(val, nullptr, nullptr);
+            //check for empty list
             if(_head == nullptr){
                 _head = _tail = newNode;
                 _size++;
                 return;
             }
-            insert(begin(), val);
+            insert(begin(), val);                   //insert from front
         }
 
         void pop_front() {
-
         }
 
         void push_back(const Ty& val) {
+            //allocate memory for new node
+            node* newNode = new node(val, nullptr, nullptr);
 
+            //check for empty list
+            if(_head == nullptr){
+                _head = _tail = newNode;
+                _size++;
+                return;
+            }
+            insert(end(), val);                     //insert from end
         }
 
         void pop_back() {
-
-            
         }
 
         iterator insert(iterator it, const Ty &val) {
-            node* newNode = new node(val);            //allocate memory for new node.  adds value, and points next/prev to null
+            //allocate memory for new node.  adds value, and points next/prev to null
+            node* newNode = new node(val);
 
-            if(_head == nullptr){               //insert a new node if empty.
+            //insert a new node if empty.
+            if(_head == nullptr){
                 newNode->_next = nullptr;
                 newNode->_prev = nullptr;
                 _head = newNode;
@@ -99,8 +109,8 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 it._current = newNode;
                 _size++;
                 return it;
-            } else
-            if(it._current == _head){           //insert at head if list is not empty
+            } else                                      //insert at head if list is not empty
+            if(it._current == _head){
                 newNode->_next = _head;
                 newNode->_prev = nullptr;
                 it._current = newNode;
@@ -108,8 +118,8 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 it._current->_next->_prev = newNode;
                 _size++;
                 return it;
-            } else
-            if(it._current == nullptr){           //insert at tail if list is not empty
+            } else                                      //insert at tail if list is not empty
+            if(it._current == nullptr){
                 newNode->_prev = _tail;
                 newNode->_next = nullptr;
                 _tail->_next = newNode;
@@ -118,7 +128,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
                 _size++;
                 return it;
             }
-            else{                              //insert in middle of list
+            else{                                       //general list insert
                 newNode->_prev = it._current->_prev;
                 newNode->_next = it._current;
                 it._current->_prev = newNode;
@@ -130,15 +140,39 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         }
 
         iterator erase(iterator it) {
-            // put your code here
+            //copy it.current node as old node
+            node* oldNode = it._current;
+
+            //check for empty list
+            if(it._current == nullptr){                 //if empty set oldNode to null
+                oldNode = nullptr;
+            }else{                                      //else set oldNode to next node
+                oldNode = it._current->_next;
+            }
+            //when list is not empty, set it.next to
+            if(it._current != nullptr){
+                it._current->_next = oldNode->_next;
+                delete oldNode;
+            }
+            _size--;
+            return it;
         }
 
         iterator erase(iterator first, iterator last) {
-            // put your code here
+            for(auto i = first; i != last; i++){
+                erase(i);
+                return first;
+            }
         }
 
         void clear() {
-            // put your code here
+            erase(begin(), end());
+            delete _head;
+            delete _tail;
+            _head = nullptr;
+            _tail = nullptr;
+            _size = 0;
+            std::cout << "all gone" << std::endl;
         }
     };
 
