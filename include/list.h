@@ -132,7 +132,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
             node* oldNode = _tail;
             //if head != null
             if(_head != nullptr){
-                //set T to copy.next, del copy
+                //set T to copy.next, tail to null, del copy
                 _tail = oldNode->_prev;
                 _tail->_next = nullptr;
                 delete oldNode;
