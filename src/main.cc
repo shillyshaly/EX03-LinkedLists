@@ -16,11 +16,21 @@ void printMe(){
 
 int main(){
 
-    ints.insert(ints.begin(), 8);
-    ints.insert(ints.begin(), 9);
-    ints.insert(ints.begin(), 10);
-    printMe();
-    ints.erase(ints.begin());
-    printMe();
+    list<int> ints(3, 12);
+
+    for(int i: ints){
+        std::cout << i << std::endl;
+    }
+    std::cout << std::endl;
+
+    ints.erase(++ints.begin());
+    for(int i: ints){
+        std::cout << i << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << ints.size() << std::endl;
+    std::cout << ints.front() << std::endl;
+    std::cout << ints.back() << std::endl;
+
 
 }

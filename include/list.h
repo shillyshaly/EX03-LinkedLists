@@ -194,7 +194,7 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
             }
             if(oldNode != nullptr){
                 it._current->_next = oldNode->_next;
-                delete oldNode;
+                //delete oldNode;
             }
             _size--;
             return it;
