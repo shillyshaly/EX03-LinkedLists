@@ -18,11 +18,10 @@ int main(){
 
     ints.insert(ints.begin(), 7);
     ints.insert(ints.begin(), 9);
-    ints.insert(++ints.begin(),8);//inserts interior
+//    ints.insert(++ints.begin(),8);//inserts interior
     ints.insert(ints.end(), 13);
-    ints.insert(++(++ints.begin()), 5);
+//    ints.insert(++(++ints.begin()), 5);
     ints.insert(ints.end(), 15);
-    printMe();
     ints.erase(++ints.begin());
     printMe();
     ints.erase(ints.begin(), ints.end());
