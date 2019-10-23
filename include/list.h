@@ -186,20 +186,15 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         }
 
         iterator erase(iterator it) {
-            //copy it.current node as old node
-            node* oldNode = it._current;
-
-            //check for empty list
-            if(_size == 0){
+            node* oldNode;
+            if(it._current == nullptr){
                 oldNode = nullptr;
-            }
-            //when list is not empty
-            if(it._current != nullptr){
+            }else{
                 oldNode = it._current->_next;
-                oldNode->_prev = it._current->_prev;
-                delete it._current;
-                it._current = oldNode;
-                it._current->_prev->_next = oldNode;
+            }
+            if(oldNode != nullptr){
+                it._current->_next = oldNode->_next;
+                delete oldNode;
             }
             _size--;
             return it;

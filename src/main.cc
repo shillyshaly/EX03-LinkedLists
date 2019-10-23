@@ -16,23 +16,11 @@ void printMe(){
 
 int main(){
 
-    ints.insert(ints.begin(), 7);
+    ints.insert(ints.begin(), 8);
     ints.insert(ints.begin(), 9);
-//    ints.insert(++ints.begin(),8);//inserts interior
-    ints.insert(ints.end(), 13);
-//    ints.insert(++(++ints.begin()), 5);
-    ints.insert(ints.end(), 15);
-    ints.erase(++ints.begin());
+    ints.insert(ints.begin(), 10);
     printMe();
-    ints.erase(ints.begin(), ints.end());
-    printMe();
-    ints.pop_front();
-    printMe();
-    ints.pop_back();
-    printMe();
-    ints.pop_back();
-    printMe();
-    ints.clear();
+    ints.erase(ints.begin());
     printMe();
 
 }
