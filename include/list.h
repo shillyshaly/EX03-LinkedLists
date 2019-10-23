@@ -203,8 +203,9 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
         iterator erase(iterator first, iterator last) {
             for(auto i = first; i != last; i++){
                 erase(i);
-                return first;
+                _size--;
             }
+            return first;
         }
 
         void clear() {

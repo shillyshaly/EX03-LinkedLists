@@ -5,6 +5,7 @@
 #include "../include/list.h"
 
 using edu::vcccd::vc::csv15::list;
+using namespace std;
 
 list<int> ints;
 void printMe(){
@@ -15,22 +16,15 @@ void printMe(){
 };
 
 int main(){
-
-    list<int> ints(3, 12);
-
-    for(int i: ints){
-        std::cout << i << std::endl;
+    list<int> ints;
+    for (int i = 0; i < 10; i++) {
+        ints.push_back(i);
     }
-    std::cout << std::endl;
 
-    ints.erase(++ints.begin());
-    for(int i: ints){
-        std::cout << i << std::endl;
-    }
-    std::cout << std::endl;
-    std::cout << ints.size() << std::endl;
-    std::cout << ints.front() << std::endl;
-    std::cout << ints.back() << std::endl;
+    auto i = ++ints.begin();
+    ints.erase(++ints.begin(), ++(++(++(++(++(++(++(++(i)))))))));
 
-
+    cout << ints.size() << endl;
+    cout << ints.front() << endl;
+    cout << ints.back() << endl;
 }
