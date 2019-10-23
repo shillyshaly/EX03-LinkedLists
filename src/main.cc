@@ -2,7 +2,7 @@
 // Created by Jamie on 10/11/2019.
 //
 #include <iostream>
-#include "list.h"
+#include "../include/list.h"
 
 using edu::vcccd::vc::csv15::list;
 

@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 
+
 namespace edu { namespace vcccd { namespace vc { namespace csv15 {
 
     template<typename Ty>
@@ -189,16 +190,16 @@ namespace edu { namespace vcccd { namespace vc { namespace csv15 {
             node* oldNode = it._current;
 
             //check for empty list
-            if(it._current == nullptr){                 //if empty set oldNode to null
+            if(_size == 0){
                 oldNode = nullptr;
-            }else{                                      //else set oldNode to next node
-                oldNode = it._current->_next;
             }
-
-            //when list is not empty, set it.next to
+            //when list is not empty
             if(it._current != nullptr){
-                it._current->_next = oldNode->_next;
-                delete oldNode;
+                oldNode = it._current->_next;
+                oldNode->_prev = it._current->_prev;
+                delete it._current;
+                it._current = oldNode;
+                it._current->_prev->_next = oldNode;
             }
             _size--;
             return it;
